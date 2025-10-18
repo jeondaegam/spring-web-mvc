@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<!--<p th:text="'안녕하세요 ' + ${data}님"> </p>-->
+<!-- thymeleaf 3.x부터 문법이 변경되었음 -->
+<p th:text="|안녕하세요 ${name}님!|">안녕하세요 손님 ~ 🙄</p>
+</body>
+</html>

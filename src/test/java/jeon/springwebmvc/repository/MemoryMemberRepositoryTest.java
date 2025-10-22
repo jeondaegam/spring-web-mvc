@@ -8,11 +8,20 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ *
+ * 각 테스트 케이스는 독립적으로 실행될 수 있어야 한다.
+ * 테스트 케이스를 작성할 때 실행 순서에 의존적으로 작성하면 안된다!!
+ *
+ */
 public class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
 
+    /**
+     * 각 테스트가 종료될 때마다 실행할 작업을 작성한다.
+     */
     @AfterEach
     public void afterEach() {
         repository.clearStore();

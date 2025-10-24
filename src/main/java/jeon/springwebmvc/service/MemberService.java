@@ -3,15 +3,19 @@ package jeon.springwebmvc.service;
 import jeon.springwebmvc.domain.Member;
 import jeon.springwebmvc.repository.MemberRepository;
 import jeon.springwebmvc.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemoryMemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

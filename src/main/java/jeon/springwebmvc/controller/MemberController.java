@@ -1,12 +1,14 @@
 package jeon.springwebmvc.controller;
 
+import jeon.springwebmvc.domain.Member;
 import jeon.springwebmvc.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class MemberController{
+public class MemberController {
 
     private final MemberService memberService;
 
@@ -18,6 +20,16 @@ public class MemberController{
     @GetMapping("/members/new")
     public String createForm() {
         return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        return "redirect:/"; // home으로 redirect
     }
 
 }

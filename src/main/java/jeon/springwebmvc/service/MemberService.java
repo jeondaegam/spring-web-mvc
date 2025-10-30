@@ -1,14 +1,13 @@
 package jeon.springwebmvc.service;
 
+import jakarta.transaction.Transactional;
 import jeon.springwebmvc.domain.Member;
 import jeon.springwebmvc.repository.MemberRepository;
-import jeon.springwebmvc.repository.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();

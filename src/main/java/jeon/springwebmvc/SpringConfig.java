@@ -1,6 +1,7 @@
 package jeon.springwebmvc;
 
-import jeon.springwebmvc.repository.JdbcTemplateMemberRepository;
+import jakarta.persistence.EntityManager;
+import jeon.springwebmvc.repository.JpaMemberRepository;
 import jeon.springwebmvc.repository.MemberRepository;
 import jeon.springwebmvc.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,14 @@ import javax.sql.DataSource;
 public class SpringConfig {
 
     private final DataSource dataSource;
+    private final EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
+    public SpringConfig(DataSource dataSource, EntityManager em) {
         this.dataSource = dataSource;
+        this.em = em;
     }
+
 
     @Bean
     public MemberService memberService() {
@@ -26,8 +30,9 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        //return new MemoryMemberRepository();
-        return new JdbcTemplateMemberRepository(dataSource);
+//        return new MemoryMemberRepository();
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
 }

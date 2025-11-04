@@ -10,7 +10,6 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
 
-//    private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) {
@@ -23,12 +22,20 @@ public class MemberService {
      */
     public Long join(Member member) {
 
-        // 중복아이디 처리
-//        Optional<Member> result = memberRepository.findByName(member.getName());
+        long start = System.currentTimeMillis();
 
-        validateDuplicateMember(member);
-        memberRepository.save(member);
-        return member.getId();
+        try {
+            // 핵심 관심 사항
+            validateDuplicateMember(member); // 중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+            //
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+            
+        }
     }
 
     private void validateDuplicateMember(Member member) {
